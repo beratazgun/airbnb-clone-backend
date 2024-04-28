@@ -1,0 +1,18 @@
+{
+  "CONFIRM_EMAIL_FOR_SIGNUP": {
+    "WRONG_CONFIRM_TOKEN": "Girdiğiniz jeton geçersiz.",
+    "USER_NOT_FOUND_WITH_PROVIDED_TOKEN": "Maalesef, girdiğiniz jetona sahip herhangi bir kullanıcı bulamadık.",
+    "SUCCESS_RESPONSE_MESSAGE": "E-postanızı başarıyla onayladınız. Artık oturum açabilirsiniz."
+  },
+  "SIGNOUT": {
+    "SOMETHING_WENT_WRONG": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+  },
+  "UPDATE_PASSWORD": {
+    "CURRENT_PASSWORD_NOT_MATCHED": "Girdiğiniz mevcut şifre yanlış.",
+    "SUCCESS_RESPONSE_MESSAGE": "Şifreniz başarıyla güncellendi."
+  },
+  "UPDATE_EMAIL": {
+    "EMAIL_ALREADY_EXISTS": "Bu e-posta adresi zaten kullanılıyor.",
+    "SUCCESS_RESPONSE_MESSAGE": "E-posta adresiniz başarıyla güncellendi. Lütfen yeni e-posta adresinizi onaylamak için e-postanızı kontrol edin."
+  }
+}

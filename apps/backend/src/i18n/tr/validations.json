@@ -1,0 +1,24 @@
+{
+  "IS_STRING": "{FIELD_NAME} dizi olmalıdır.",
+  "IS_NUMBER": "{FIELD_NAME} sayı olmalıdır.",
+  "NOT_EMPTY": "{FIELD_NAME} boş olamaz.",
+  "IS_BOOLEAN": "{FIELD_NAME} mantıksal bir değer olmalıdır.",
+  "IS_ARRAY": "{FIELD_NAME} dizi olmalıdır.",
+  "INVALID_EMAIL": "geçersiz e-posta adresi.",
+  "INVALID_PHONE_NUMBER": "geçersiz telefon numarası.",
+  "INVALID_BOOLEAN": "{FIELD_NAME} geçersiz bir mantıksal değer.",
+  "OBJECT": "{FIELD_NAME} nesne olmalıdır.",
+  "USER_BIRTH_DAY": {
+    "DAY": "gün {MIN} ile {MAX} arasında olmalıdır.",
+    "MONTH": "ay {MIN} ile {MAX} arasında olmalıdır.",
+    "YEAR": "yıl {MIN} ile {MAX} arasında olmalıdır."
+  },
+  "IS_PASSWORD_SECURE": {
+    "VERY_WEAK": "bu çok kullanılan bir şifredir.",
+    "WEAK": "daha az yaygın olan daha fazla kelime ekleyin."
+  },
+  "PASSWORDS_DO_NOT_MATCH": "şifre ve şifre tekrarı aynı olmalıdır.",
+  "IS_USER_OVER_18": "kullanıcı 18 yaşından büyük olmalıdır.",
+  "CURRENT_AND_NEW_PASSWORD_DOESNT_EQUAL": "Mevcut şifre ve yeni şifre aynı olamaz.",
+  "IS_IN": "{FIELD_NAME} aşağıdakilerden biri olmalıdır: {ALLOWED_VALUES}."
+}

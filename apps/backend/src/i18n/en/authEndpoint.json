@@ -1,0 +1,28 @@
+{
+  "SIGNUP_FOR_WEB": {
+    "PASSWORD_CONTAIN_SENSITIVE_INFORMATION": "Your password can not include your name or email.",
+    "SUCCESS_RESPONSE_MESSAGE": "You have successfully signed up. Please check your email."
+  },
+  "SIGNIN_FOR_WEB": {
+    "THERE_IS_ACCOUNT_ANOTHER_PROVIDERS": "Your have an account another auth provider. Please sign in with your auth provider.",
+    "WRONG_EMAIL_OR_PASSWORD": "Your email or password is wrong.",
+    "REGISTRATION_NOT_COMPLETED": "Your account registration is not completed. Please check your email and confirm your account.",
+    "EMAIL_NOT_CONFIRMED": "Your account is not confirmed. Please check your email and confirm your account.",
+    "ACCOUNT_BLOCKED": "Your account is blocked. Plaese contact with us.",
+    "ACCOUNT_DELETED": "Your account is deleted. You can not sign in.",
+    "ACCOUNT_NOT_ACTIVE": "Your account is not active. Please contact with us.",
+    "SUCCESS_RESPONSE_MESSAGE": "You have successfully signed in."
+  },
+  "SEND_FORGOT_PASSWORD_LINK": {
+    "SUCCESS_RESPONSE_MESSAGE": "A link to reset your password has been sent to {EMAIL}."
+  },
+  "RESET_PASSWORD": {
+    "SUCCESS_RESPONSE_MESSAGE": "Your password has been successfully reset. You can now sign in with your new password.",
+    "WRONG_RESET_TOKEN_OR_INVALID": "Your reset token is wrong or expired. Please try again.",
+    "PASSWORD_CANNOT_BE_SAME_AS_OLD_PASSWORD": "Your new password can not be same as your old password.",
+    "YOUR_ACCOUNT_IS_NOT_ACTIVE_OR_DELETED_OR_BLOCKED_OR_NOT_CONFIRMED": "You can not reset your password. Please contact with us."
+  },
+  "RESEND_VERIFICATION_EMAIL": {
+    "SUCCESS_RESPONSE_MESSAGE": "A new verification email has been sent to {EMAIL}."
+  }
+}

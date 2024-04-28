@@ -1,0 +1,8 @@
+{
+  "PRISMA_CLIENT_KNOWN_ERRORS": {
+    "P2000": "{COLUMN_NAME} geçersiz.",
+    "P2002": "{FIELD_NAME} zaten mevcut.",
+    "P2003": "alan üzerinde yabancı anahtar kısıtlaması başarısız oldu: {FIELD_NAME}.",
+    "P2005": "veritabanında alan için depolanan {FIELD_VALUE} değeri, alanın tipi için geçersizdir: {FIELD_NAME}"
+  }
+}

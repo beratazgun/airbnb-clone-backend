@@ -1,0 +1,8 @@
+{
+  "GOOGLE_SIGNIN_CALLBACK": {
+    "REGISTRATION_NOT_COMPLETED_RESPONSE": "You have not completed the registration. Please complete the registration and try again."
+  },
+  "GOOGLE_SIGNIN_COMPLETE_REGISTRATION": {
+    "ACCOUNT_NOT_FOUND": "Your account is not exist or completed your registration."
+  }
+}

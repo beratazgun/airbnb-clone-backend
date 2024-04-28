@@ -1,0 +1,18 @@
+{
+  "CONFIRM_EMAIL_FOR_SIGNUP": {
+    "WRONG_CONFIRM_TOKEN": "The token you provided is invalid.",
+    "USER_NOT_FOUND_WITH_PROVIDED_TOKEN": "Unfortunately, we couldn't find any users with the token you entered.",
+    "SUCCESS_RESPONSE_MESSAGE": "You have successfully confirmed your email. You can now signin."
+  },
+  "SIGNOUT": {
+    "SOMETHING_WENT_WRONG": "Something went wrong. Please try again."
+  },
+  "UPDATE_PASSWORD": {
+    "CURRENT_PASSWORD_NOT_MATCHED": "The current password you entered is incorrect.",
+    "SUCCESS_RESPONSE_MESSAGE": "Your password has been updated successfully."
+  },
+  "UPDATE_EMAIL": {
+    "EMAIL_ALREADY_EXISTS": "The email you entered is already in use.",
+    "SUCCESS_RESPONSE_MESSAGE": "Your email has been updated successfully. Please confirm your new email address."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "GUARDS": {
+    "AUTHORIZATON_GUARD": {
+      "NOT_AUTHORIZED": "Bu kaynağa erişme yetkiniz yok.",
+      "CSRF_TOKEN_MISMATCH": "CSRF token eşleşmiyor.",
+      "COULD_NOT_DESTROY_SESSION": "Bir şeyler ters gitti. Lütfen tekrar deneyin."
+    }
+  }
+}

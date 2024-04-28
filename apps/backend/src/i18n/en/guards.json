@@ -1,0 +1,9 @@
+{
+  "GUARDS": {
+    "AUTHORIZATON_GUARD": {
+      "NOT_AUTHORIZED": "You are not authorized to access this resource",
+      "CSRF_TOKEN_MISMATCH": "CSRF token does not match.",
+      "COULD_NOT_DESTROY_SESSION": "Something went wrong. Please try again later."
+    }
+  }
+}

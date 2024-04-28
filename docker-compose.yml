@@ -1,0 +1,120 @@
+version: '3'
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    volumes:
+      - ./data/redis/redis-data:/data
+    networks:
+      - airbnb-network
+
+  # mongodb:
+  #   image: 'mongo:latest'
+  #   restart: unless-stopped
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./data:/data/mongodb
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ./data/postgres/postgres-data:/var/lib/postgresql/data
+    networks:
+      - airbnb-network
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    restart: on-failure
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - airbnb-network
+
+  nginx:
+    restart: on-failure
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3000:3000'
+    networks:
+      - airbnb-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./apps/backend/Dockerfile
+      target: development
+    command: npm run start:dev backend
+    env_file:
+      - ./apps/backend/src/core/config/.env.development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3001:3001'
+    networks:
+      - airbnb-network
+
+  email-service:
+    build:
+      context: .
+      dockerfile: ./apps/email-service/Dockerfile
+      target: development
+    command: npm run start:dev email-service
+    env_file:
+      - ./apps/email-service/src/core/config/.env.development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3002:3002'
+    networks:
+      - airbnb-network
+
+  # prisma-studio:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/backend/Dockerfile
+  #     target: development
+  #   ports:
+  #     - '5555:5555'
+  #   command: npx prisma studio --port 5555 --schema=./prisma/schema.prisma
+  #   env_file:
+  #     - ./apps/backend/src/core/config/.env.development
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+
+  localstack:
+    container_name: localstack
+    image: localstack/localstack
+    ports:
+      - '4566:4566'
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - './s3/volume:/var/lib/localstack'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    networks:
+      - airbnb-network
+
+networks:
+  airbnb-network:
+    driver: bridge

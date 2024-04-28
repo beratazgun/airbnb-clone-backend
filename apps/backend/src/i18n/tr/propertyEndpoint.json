@@ -1,0 +1,6 @@
+{
+  "CREATE_PROPERTY": {
+    "PROPERTY_DOESNT_EXIST": "Bu kimliğe sahip mülk mevcut değil",
+    "SUCCESS_RESPONSE_MESSAGE": "Mülkiyet başarıyla oluşturuldu"
+  }
+}

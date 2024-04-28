@@ -1,0 +1,24 @@
+{
+  "IS_STRING": "{FIELD_NAME} must be a string.",
+  "IS_NUMBER": "{FIELD_NAME} must be a number.",
+  "NOT_EMPTY": "{FIELD_NAME} cannot be empty.",
+  "IS_BOOLEAN": "{FIELD_NAME} must be a boolean.",
+  "IS_ARRAY": "{FIELD_NAME} must be an array.",
+  "INVALID_EMAIL": "email is invalid",
+  "INVALID_PHONE_NUMBER": "phone number is invalid",
+  "INVALID_BOOLEAN": "{FIELD_NAME} must be a boolean.",
+  "IS_OBJECT": "{FIELD_NAME} must be an object.",
+  "USER_BIRTH_DAY": {
+    "DAY": "Day must be between {MIN} and {MAX}.",
+    "MONTH": "Month must be between {MIN} and {MAX}.",
+    "YEAR": "Year must be between {MIN} and {MAX}."
+  },
+  "IS_USER_OVER_18": "User must be over 18 years old.",
+  "IS_PASSWORD_SECURE": {
+    "VERY_WEAK": "This is a heavily used password.",
+    "WEAK": "Add more words that are less common."
+  },
+  "PASSWORDS_DO_NOT_MATCH": "Password and password confirmation should be equal.",
+  "CURRENT_AND_NEW_PASSWORD_DOESNT_EQUAL": "Current password and new password should not be equal.",
+  "IS_IN": "{FIELD_NAME} must be one of the following: {ALLOWED_VALUES}."
+}

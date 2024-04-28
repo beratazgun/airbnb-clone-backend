@@ -1,0 +1,8 @@
+{
+  "PRISMA_CLIENT_KNOWN_ERRORS": {
+    "P2000": "{COLUMN_NAME} is invalid.",
+    "P2002": "{FIELD_NAME} already exists.",
+    "P2003": "foreign key constraint failed on the field: {FIELD_NAME}.",
+    "P2005": "the value {FIELD_VALUE} stored in the database for the field {FIELD_NAME} is invalid for the field's type"
+  }
+}

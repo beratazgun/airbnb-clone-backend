@@ -1,0 +1,8 @@
+{
+  "GOOGLE_SIGNIN_CALLBACK": {
+    "REGISTRATION_NOT_COMPLETED_RESPONSE": "Kaydı tamamlamadınız. Lütfen kaydı tamamlayıp tekrar deneyin."
+  },
+  "GOOGLE_SIGNIN_COMPLETE_REGISTRATION": {
+    "ACCOUNT_NOT_FOUND": "Hesabınız mevcut değil veya kaydınız tamamlandı."
+  }
+}

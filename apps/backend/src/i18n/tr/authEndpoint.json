@@ -1,0 +1,28 @@
+{
+  "SIGNUP_FOR_WEB": {
+    "PASSWORD_CONTAIN_SENSITIVE_INFORMATION": "Şifreniz adınızı veya e-posta adresinizi içeremez.",
+    "SUCCESS_RESPONSE_MESSAGE": "Başarıyla kaydoldunuz. Lütfen e-postanızı kontrol edin."
+  },
+  "SIGNIN_FOR_WEB": {
+    "THERE_IS_ACCOUNT_ANOTHER_PROVIDERS": "Bu e-posta adresi başka bir sağlayıcıya ait. Lütfen daha önce kaydolduğunuz sağlayıcı ile giriş yapın.",
+    "WRONG_EMAIL_OR_PASSWORD": "E-posta adresi veya şifre hatalı.",
+    "REGISTRATION_NOT_COMPLETED": "Kaydınız tamamlanmamış. Lütfen e-postanızı kontrol edin.",
+    "EMAIL_NOT_CONFIRMED": "E-posta adresiniz onaylanmamış. Lütfen e-postanızı kontrol edin.",
+    "ACCOUNT_BLOCKED": "Hesabınız bloke edilmiş. Lütfen bizimle iletişime geçin.",
+    "ACCOUNT_DELETED": "Hesabınız silinmiş. Giriş yapamazsınız. ",
+    "ACCOUNT_NOT_ACTIVE": "Hesabınız aktif değil.",
+    "SUCCESS_RESPONSE_MESSAGE": "Giriş başarılı."
+  },
+  "SEND_FORGOT_PASSWORD_LINK": {
+    "SUCCESS_RESPONSE_MESSAGE": "{EMAIL} adresine parolanızı sıfırlamanız için bir bağlantı gönderilmiştir."
+  },
+  "RESET_PASSWORD": {
+    "SUCCESS_RESPONSE_MESSAGE": "Şifreniz başarıyla sıfırlandı. Yeni şifrenizle giriş yapabilirsiniz.",
+    "WRONG_RESET_TOKEN_OR_INVALID": "Geçersiz veya hatalı bir şifre sıfırlama jetonu.",
+    "PASSWORD_CANNOT_BE_SAME_AS_OLD_PASSWORD": "Yeni şifreniz eski şifrenizle aynı olamaz.",
+    "YOUR_ACCOUNT_IS_NOT_ACTIVE_OR_DELETED_OR_BLOCKED_OR_NOT_CONFIRMED": "Şifrenizi sıfırlayamazsınız. Lütfen bizimle iletişime geçin."
+  },
+  "RESEND_VERIFICATION_EMAIL": {
+    "SUCCESS_RESPONSE_MESSAGE": "{EMAIL} adresine yeni bir doğrulama e-postası gönderildi."
+  }
+}

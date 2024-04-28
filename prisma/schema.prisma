@@ -1,0 +1,359 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PropertyStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model MailTemplates {
+  id               Int    @id @default(autoincrement())
+  templateName     String @unique
+  templateFileName String @unique
+  subject          String
+
+  @@index([templateName])
+}
+
+model Users {
+  id                           Int                     @id @default(autoincrement())
+  userSubID                    Int                     @unique
+  firstName                    String                  @db.VarChar(30)
+  lastName                     String?                 @db.VarChar(30)
+  fullName                     String?                 @db.VarChar(60)
+  phone                        String?                 @unique
+  email                        String                  @unique
+  profileImage                 String?
+  password                     String?
+  isUserActive                 Boolean                 @default(false)
+  isEmailConfirmed             Boolean                 @default(false)
+  isPhoneConfirmed             Boolean                 @default(false)
+  isUserBlocked                Boolean                 @default(false)
+  isUserDeleted                Boolean                 @default(false)
+  isUserRegistrationCompleted  Boolean                 @default(false)
+  isAcceptedTermsAndConditions Boolean                 @default(false)
+  createdAt                    DateTime                @default(now())
+  updatedAt                    DateTime?
+  userBlockedAt                DateTime?
+  userDeletedAt                DateTime?
+  emailConfirmedAt             DateTime?
+  phoneConfirmedAt             DateTime?
+  userBirthDay                 DateTime?
+  userAddressID                Int?                    @unique
+  authStrategyToUser           AuthStrategyToUser?
+  emergencyContactPerson       EmergencyContactPerson?
+  userPreference               UserPreference?
+  property                     Property[]
+  favourite                    Favourite?
+  userReviews                  UserReviews[]
+  booking                      Booking?
+  userAddress                  UserAddress?            @relation(fields: [userAddressID], references: [id])
+
+  @@index([phone, email])
+}
+
+model UserAddress {
+  id           Int      @id @default(autoincrement())
+  addressSubID Int      @unique
+  addressLine  String
+  city         String
+  state        String
+  zipCode      String
+  countryID    Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  country      Country  @relation(fields: [countryID], references: [id])
+  users        Users?
+}
+
+model AuthStrategyToUser {
+  id             Int          @id @default(autoincrement())
+  authStrategyID Int
+  userID         Int          @unique
+  accessToken    String?
+  user           Users        @relation(fields: [userID], references: [id])
+  authStrategy   AuthStrategy @relation(fields: [authStrategyID], references: [id])
+
+  @@index([userID])
+}
+
+model AuthStrategy {
+  id                    Int                  @id @default(autoincrement())
+  strategyName          String               @unique
+  strategyNameUpperCase String
+  authStrategyToUser    AuthStrategyToUser[]
+}
+
+model EmergencyContactPerson {
+  id             Int      @id @default(autoincrement())
+  ecpSubID       Int      @unique
+  firstName      String
+  lastName       String
+  phone          String   @unique
+  email          String   @unique
+  relationship   String
+  userID         Int      @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           Users    @relation(fields: [userID], references: [id])
+  preferedLangID Int
+  language       Language @relation(fields: [preferedLangID], references: [id])
+
+  @@index([userID])
+}
+
+model UserPreference {
+  id          Int       @id @default(autoincrement())
+  upSubID     Int       @unique
+  userID      Int       @unique
+  timezonesID Int?
+  currencyID  Int
+  languageID  Int
+  timezone    Timezone? @relation(fields: [timezonesID], references: [id], onDelete: Cascade)
+  currency    Currency  @relation(fields: [currencyID], references: [id])
+  language    Language  @relation(fields: [languageID], references: [id])
+  user        Users     @relation(fields: [userID], references: [id], onDelete: Cascade)
+
+  @@index([userID])
+}
+
+model Timezone {
+  id               Int              @id @default(autoincrement())
+  timezone         String           @unique
+  timezoneFullName String           @unique
+  userPreferences  UserPreference[]
+}
+
+model Currency {
+  id                    Int              @id @default(autoincrement())
+  currencyCode          String           @unique
+  currencyCodeUpperCase String           @unique
+  currencyName          String           @unique
+  currencySymbol        String           @unique
+  unicodeSymbol         String           @unique
+  userPreferences       UserPreference[]
+  LocaleCodes           LocaleCodes[]
+}
+
+model Language {
+  id                     Int                      @id @default(autoincrement())
+  language               String                   @unique
+  userPreferences        UserPreference[]
+  emergencyContactPerson EmergencyContactPerson[]
+  LocaleCodes            LocaleCodes[]
+}
+
+model Country {
+  id          Int           @id @default(autoincrement())
+  country     String        @unique
+  regionID    Int
+  phoneCode   String
+  localeCodes LocaleCodes?
+  region      Region        @relation(fields: [regionID], references: [id])
+  userAddress UserAddress[]
+}
+
+model LocaleCodes {
+  id                    Int      @id @default(autoincrement())
+  localeCode            String   @unique
+  primaryLanguageSubtag String
+  regionSubtag          String   @unique
+  countryID             Int      @unique
+  languageID            Int
+  currencyID            Int
+  currency              Currency @relation(fields: [currencyID], references: [id])
+  country               Country  @relation(fields: [countryID], references: [id])
+  language              Language @relation(fields: [languageID], references: [id])
+}
+
+model Region {
+  id      Int       @id @default(autoincrement())
+  region  String    @unique
+  country Country[]
+}
+
+model PropertyImage {
+  id         Int       @id @default(autoincrement())
+  imageLink  String    @unique
+  propertyID Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime?
+  property   Property  @relation(fields: [propertyID], references: [id])
+}
+
+model Property {
+  id                      Int                     @id @default(autoincrement())
+  propertySubID           BigInt                  @unique
+  locationID              Int?                    @unique
+  numberOfGuests          Int?
+  numberOfBedrooms        Int?
+  numberOfBeds            Int?
+  numberOfBaths           Int?
+  nightlyPrice            Float?
+  isGuestFavorite         Boolean                 @default(false)
+  description             String?                 @db.VarChar(500)
+  title                   String?                 @db.VarChar(32)
+  propertyOwnerID         Int?
+  placeTypeID             Int?
+  propertyTypeID          Int?
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime?
+  isThereWeapons          Boolean?                @default(false)
+  isThereDangerousAnimals Boolean?                @default(false)
+  isThereSecurityCameras  Boolean?                @default(false)
+  propertyStatus          PropertyStatus
+  propertyOwner           Users?                  @relation(fields: [propertyOwnerID], references: [id])
+  placeType               PlaceType?              @relation(fields: [placeTypeID], references: [id])
+  propertyType            PropertyType?           @relation(fields: [propertyTypeID], references: [id])
+  propertyLocation        PropertyLocation?       @relation(fields: [locationID], references: [id])
+  propertyToOpportunity   PropertyToOpportunity[]
+  favourite               Favourite?
+  userReviews             UserReviews[]
+  booking                 Booking?
+  Image                   PropertyImage[]
+
+  @@index([propertyOwnerID, propertySubID])
+}
+
+model PropertyToOpportunity {
+  id            Int         @id @default(autoincrement())
+  propertyID    Int
+  opportunityID Int
+  property      Property    @relation(fields: [propertyID], references: [id])
+  opportunity   Opportunity @relation(fields: [opportunityID], references: [id])
+
+  @@unique([propertyID, opportunityID])
+  @@index([propertyID, opportunityID])
+}
+
+model Opportunity {
+  id                     Int                     @id @default(autoincrement())
+  opportunity            String
+  opportunityCategoryID  Int
+  opportunityDescription String?
+  opportunityCategory    OpportunityCategory     @relation(fields: [opportunityCategoryID], references: [id])
+  propertyToOpportunity  PropertyToOpportunity[]
+}
+
+model OpportunityCategory {
+  id          Int           @id @default(autoincrement())
+  category    String        @unique
+  opportunity Opportunity[]
+}
+
+model PlaceType {
+  id        Int        @id @default(autoincrement())
+  placeType String     @unique
+  property  Property[]
+}
+
+model PropertyType {
+  id           Int        @id @default(autoincrement())
+  propertyType String     @unique
+  property     Property[]
+}
+
+model PropertyLocation {
+  id                     Int       @id @default(autoincrement())
+  latitude               Float
+  longitude              Float
+  district               String?
+  addressLineOne         String
+  addressLineTwo         String?
+  addressLineThree       String?
+  addressLineFour        String?
+  street                 String
+  apartmentBuildingFloor String
+  showClearLocation      Boolean
+  zipCode                String
+  Property               Property?
+}
+
+model Favourite {
+  id         Int      @id @default(autoincrement())
+  userID     Int      @unique
+  propertyID Int      @unique
+  user       Users    @relation(fields: [userID], references: [id])
+  property   Property @relation(fields: [propertyID], references: [id])
+
+  @@index([userID])
+}
+
+model UserReviews {
+  id         Int      @id @default(autoincrement())
+  userID     Int
+  propertyID Int
+  review     String
+  reviewDate DateTime @default(now())
+  user       Users    @relation(fields: [userID], references: [id])
+  property   Property @relation(fields: [propertyID], references: [id])
+
+  @@index([userID])
+  @@index([propertyID])
+}
+
+model ReviewComponent {
+  id              Int              @id @default(autoincrement())
+  component       String
+  componentRating ComponentRating?
+}
+
+model ComponentRating {
+  id                Int             @id @default(autoincrement())
+  reviewComponentID Int             @unique
+  userReviewID      Int
+  rating            Int
+  reviewComponent   ReviewComponent @relation(fields: [reviewComponentID], references: [id])
+
+  @@unique([reviewComponentID, userReviewID])
+}
+
+model Booking {
+  id              Int             @id @default(autoincrement())
+  bookingSubID    Int             @unique
+  userID          Int             @unique
+  propertyID      Int             @unique
+  checkInDate     DateTime
+  checkOutDate    DateTime
+  numberOfGuest   Int
+  bookingStatusID Int
+  serviceFee      Float
+  totalAmount     Float
+  cleaningFee     Float
+  user            Users           @relation(fields: [userID], references: [id])
+  property        Property        @relation(fields: [propertyID], references: [id])
+  bookingStatus   BookingStatus   @relation(fields: [bookingStatusID], references: [id])
+  bookingGuests   BookingGuests[]
+
+  @@index([userID])
+  @@index([propertyID])
+}
+
+model BookingGuests {
+  id          Int       @id @default(autoincrement())
+  guestTypeID Int
+  numOfGuests Int
+  bookingID   Int
+  guestType   GuestType @relation(fields: [guestTypeID], references: [id])
+  booking     Booking   @relation(fields: [bookingID], references: [id])
+}
+
+model GuestType {
+  id            Int             @id @default(autoincrement())
+  guestType     String
+  ageRangeStart Int?
+  ageRangeEnd   Int?
+  bookingGuests BookingGuests[]
+}
+
+model BookingStatus {
+  id      Int       @id @default(autoincrement())
+  status  String
+  booking Booking[]
+}
